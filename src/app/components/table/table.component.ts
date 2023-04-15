@@ -5,7 +5,7 @@ import {
   OnInit,
   Input,
 } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { UniversityResponse } from 'src/app/Interface/UniversityResponse';
 
@@ -16,8 +16,11 @@ import { UniversityResponse } from 'src/app/Interface/UniversityResponse';
 })
 export class TableComponent implements AfterViewInit, OnInit {
   @Input() universities: UniversityResponse[];
+  @Input() dataSource: MatTableDataSource<UniversityResponse>;
 
-  UNIVERSITY_DATA: UniversityResponse[] = [];
+  startIndex = 0;
+
+  // UNIVERSITY_DATA: UniversityResponse[] = [];
 
   displayedColumns: string[] = [
     'sno',
@@ -26,15 +29,15 @@ export class TableComponent implements AfterViewInit, OnInit {
     'universityDomain',
   ];
 
-  dataSource = new MatTableDataSource<UniversityResponse>(this.UNIVERSITY_DATA);
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
-  ngOnInit(): void {
-    this.UNIVERSITY_DATA = this.universities;
+  ngOnInit(): void {}
+
+  onPageChange(event: PageEvent) {
+    this.startIndex = event.pageIndex * event.pageSize;
   }
 }

@@ -12,13 +12,14 @@ export class LoginComponent {
   constructor(private router: Router) {}
 
   onSubmit() {
-    if (!this.name) return;
+    if (!this.name) {
+      alert('Please provide the name to continue!');
+      return;
+    }
 
     localStorage.setItem('name', JSON.stringify(this.name));
     localStorage.setItem('searchCount', JSON.stringify(0));
     this.router.navigate(['home']);
-
-    console.log(this.name);
   }
 
   onCancel() {
