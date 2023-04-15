@@ -1,0 +1,63 @@
+<div>
+  <app-navbar></app-navbar>
+
+  <div class="container">
+    <h1 class="text-center my-4">Welcome {{ name | titlecase }}</h1>
+
+    <!-- 2nd line -->
+    <div class="my-3 d-flex align-items-center justify-content-evenly">
+      <!-- dropdown -->
+      <span class="mx-2">
+        <mat-form-field appearance="fill">
+          <mat-label>Country</mat-label>
+          <mat-select [(ngModel)]="selectedCountryValue">
+            <mat-option>None</mat-option>
+            <mat-option
+              *ngFor="let country of countries"
+              [value]="country.value"
+            >
+              {{ country.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </span>
+
+      <!-- input -->
+      <span class="mx-2">
+        <mat-form-field class="example-form-field">
+          <mat-label>Other Country</mat-label>
+          <input
+            matInput
+            type="text"
+            maxlength="20"
+            [(ngModel)]="inputCountry"
+          />
+          <button
+            *ngIf="inputCountry"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="inputCountry = ''"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </span>
+
+      <!-- button -->
+      <span class="mx-2 mb-4">
+        <button mat-raised-button color="accent">Search</button>
+      </span>
+
+      <!-- counter -->
+      <span class="mx-2 mb-4">
+        <p class="m-0">No. of Searches: {{ searchCount }}</p>
+      </span>
+    </div>
+
+    <!-- table -->
+    <div class="my-3">
+      <app-table></app-table>
+    </div>
+  </div>
+</div>
