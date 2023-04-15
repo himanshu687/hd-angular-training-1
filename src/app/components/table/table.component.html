@@ -9,19 +9,23 @@
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name</th>
-      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      <td mat-cell *matCellDef="let element">{{ element?.name }}</td>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="state-province">
       <th mat-header-cell *matHeaderCellDef>State-Province</th>
-      <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{
+          element["state-province"] !== null ? element["state-province"] : "-"
+        }}
+      </td>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="universityDomain">
       <th mat-header-cell *matHeaderCellDef>University Domain</th>
-      <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+      <td mat-cell *matCellDef="let element">{{ element?.web_pages[0] }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

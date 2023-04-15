@@ -10,6 +10,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchPageComponent } from './components/search-page/search-page.component';
 import { TableComponent } from './components/table/table.component';
+import { CommonModule } from '@angular/common';
 
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
@@ -43,6 +44,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatIconModule,
     MatTableModule,
     MatPaginatorModule,
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

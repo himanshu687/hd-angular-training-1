@@ -46,7 +46,9 @@
 
       <!-- button -->
       <span class="mx-2 mb-4">
-        <button mat-raised-button color="accent">Search</button>
+        <button (click)="onSearchClick()" mat-raised-button color="accent">
+          Search
+        </button>
       </span>
 
       <!-- counter -->
@@ -57,7 +59,7 @@
 
     <!-- table -->
     <div class="my-3">
-      <app-table></app-table>
+      <app-table [universities]="universityReponse"></app-table>
     </div>
   </div>
 </div>

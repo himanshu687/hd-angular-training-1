@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CountryDropdown } from 'src/app/Interface/CountryDropdown';
+import { UniversityResponse } from 'src/app/Interface/UniversityResponse';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-search-page',
@@ -11,6 +13,9 @@ export class SearchPageComponent {
   selectedCountryValue: string = '';
   inputCountry: string = '';
   searchCount: number = JSON.parse(localStorage.getItem('searchCount'));
+  universityReponse: UniversityResponse[] = [];
+
+  constructor(private appService: AppService) {}
 
   countries: CountryDropdown[] = [
     { name: 'India', value: 'India' },
@@ -22,4 +27,26 @@ export class SearchPageComponent {
     { name: 'Germany', value: 'Germany' },
     { name: 'Australia', value: 'Australia' },
   ];
+
+  onSearchClick() {
+    if (!this.selectedCountryValue && !this.inputCountry) {
+      alert('Please provide the country.');
+      return;
+    }
+
+    if (this.selectedCountryValue && this.inputCountry) {
+      alert('Please provide one country value.');
+      return;
+    }
+
+    this.appService
+      .getUniversities(this.selectedCountryValue || this.inputCountry)
+      .subscribe((response: UniversityResponse[]) => {
+        console.log('response: ', response);
+
+        this.universityReponse = response;
+      });
+
+    console.log('universityReponse in search page: ', this.universityReponse);
+  }
 }

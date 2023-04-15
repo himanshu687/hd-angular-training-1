@@ -1,9 +1,13 @@
-import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ViewChild,
+  OnInit,
+  Input,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { UniversityResponse } from 'src/app/Interface/UniversityResponse';
-import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-table',
@@ -11,6 +15,8 @@ import { AppService } from 'src/app/app.service';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements AfterViewInit, OnInit {
+  @Input() universities: UniversityResponse[];
+
   UNIVERSITY_DATA: UniversityResponse[] = [];
 
   displayedColumns: string[] = [
@@ -28,9 +34,7 @@ export class TableComponent implements AfterViewInit, OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private appService: AppService) {}
-
   ngOnInit(): void {
-    // this.appService.getUniversities('India');
+    this.UNIVERSITY_DATA = this.universities;
   }
 }

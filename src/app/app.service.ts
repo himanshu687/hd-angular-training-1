@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UniversityResponse } from './Interface/UniversityResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -10,10 +11,8 @@ export class AppService {
   constructor(private http: HttpClient) {}
 
   getUniversities(name: string) {
-    this.http
-      .get(this.URL + '/search?country=' + name)
-      .subscribe((response) => {
-        console.log(response);
-      });
+    console.log('name: ', name);
+
+    return this.http.get(this.URL + '/search?country=' + name);
   }
 }
